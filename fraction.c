@@ -10,7 +10,7 @@ void input(struct addFraction f[])
     for(i=0;i<2;i++)
     {
         printf("enter the numerator and denominator for %d",(i+1));
-        scanf("%d%d\n",&f[i].num,&f[i].dem);
+        scanf("%d%d",&f[i].num,&f[i].dem);
         printf("%d  %d\n",f[i].num,f[i].dem);
         
     }
