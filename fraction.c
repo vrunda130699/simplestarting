@@ -1,48 +1,48 @@
 #include<stdio.h> 
-struct addFraction
+struct Fraction
 {
     int num,dem;
 };
 
-void input(struct addFraction f[])
+void input(struct Fraction *f1,struct Fraction *f2)
 {
-    int i;
-    for(i=0;i<2;i++)
-    {
-        printf("enter the numerator and denominator for %d",(i+1));
-        scanf("%d%d",&f[i].num,&f[i].dem);
-        printf("%d  %d\n",f[i].num,f[i].dem);
-        
-    }
+    printf("enter the numerator and denominator for 1st fraction");
+    scanf("%d %d",(&f1->num),(&f1->dem));
+    printf("enter the num and deno for 2nd fraction");
+    scanf("%d %d",(&f2->num),(&f2->dem));
 }
 int gcd(int a, int b) 
 { 
-    if (a == 0) 
-        return b; 
-    return gcd(b%a, a); 
+    int i,gcd=0;
+     for(i=1; i <= a && i <= b; ++i)
+    {
+        if(a%i==0 && b%i==0)
+            gcd = i;
+    }
+    return gcd;
+
 } 
   
-struct addFraction lowest(struct addFraction f3) 
+struct Fraction * reduce(struct Fraction *f3) 
 { 
-    int common_factor = gcd(f3.num,f3.dem); 
-    f3.dem = f3.dem/common_factor; 
-    f3.num = f3.num/common_factor; 
+    int common_factor = gcd(f3->num,f3->dem); 
+    f3->dem = f3->dem/common_factor; 
+    f3->num = f3->num/common_factor; 
     return f3;
 } 
   
-void addFraction(struct addFraction f[]) 
+void addFraction(struct Fraction f1,struct Fraction f2,struct Fraction *f3) 
 { 
-    f[2].dem = gcd(f[0].dem,f[1].dem); 
-    f[2].dem = (f[0].dem*f[1].dem) / f[2].dem; 
-    f[2].num = (f[0].num)*(f[2].dem/f[0].dem) + (f[1].num)*(f[2].dem/f[1].dem); 
-    f[2]=lowest(f[2]); 
+    f3->dem = gcd(f1.dem,f2.dem); 
+    f3->dem = (f1.dem*f2.dem) / f3->dem; 
+    f3->num = (f1.num)*(f3->dem/f1.dem) + (f2.num)*(f3->dem/f2.dem); 
+    f3=reduce(f3); 
 } 
 int main() 
 { 
-    struct addFraction f[3];
-    input(f);
-    addFraction(f); 
-    printf("%d %d",f[2].num,f[2].dem);
-    
+    struct Fraction f1,f2,f3;
+    input(&f1,&f2);
+    addFraction(f1,f2,&f3); 
+    printf("%d %d",f3.num,f3.dem);
     return 0; 
 } 
