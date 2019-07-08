@@ -51,7 +51,7 @@ void addFraction(struct addFraction f[],int n)
 { 
     int i;
     struct addFraction f1;
-    for(i=0;i<(n/2);i++)
+    for(i=0;i<=(n/2);i++)
     {
     f1.dem = gcd(f[0].dem,f[(i+1)].dem); 
     printf("%d",f1.dem);
