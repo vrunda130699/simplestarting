@@ -59,6 +59,7 @@ void addFraction(struct addFraction f[],int n)
     f1.num = (f[0].num)*(f[2].dem/f[0].dem) + (f[1].num)*(f[2].dem/f[1].dem); 
     f[0]=lowest(f1); 
 } 
+}
 int main() 
 { 
     int n;
