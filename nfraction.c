@@ -72,7 +72,7 @@ void reduce(struct fraction *f3)
 
 
 
-void addfraction(struct fraction f[],int n)
+struct fraction addfraction(struct fraction f[],int n)
 {
     int i,sum=0;
     struct fraction f1;
@@ -91,18 +91,16 @@ void addfraction(struct fraction f[],int n)
     }
     f1.num = sum;
      reduce(&f1);
-    printf("the sum is %d / %d",f1.num,f1.dem);
-    
-    
-    
-    
+     return f1;
 }
+
 int main() 
 { 
     int n; 
     inputn(&n);
-    struct fraction f[n];
+    struct fraction f[n],f1;
     input(f,n);
-    addfraction(f,n);
+    f1=addfraction(f,n);
+     printf("the sum is %d / %d",f1.num,f1.dem);
     return 0; 
-} 
+}
