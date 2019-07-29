@@ -20,16 +20,37 @@ void input(struct area a[],int n)
         printf("%f %f %f %f %f %f is vertices of %d",a[i].x1,a[i].y1,a[i].x2,a[i].y2,a[i].x3,a[i].y3,(i+1));
     }
 }
+void smallest(int number[3])
+{
+    int temp;
+         for (int i = 0; i < 3; ++i) 
+        {
+            for (int j = i + 1; j < 3; ++j) 
+            {
+                if (number[i] < number[j]) 
+                {
+                    temp = number[i];
+                    number[i] = number[j];
+                    number[j] = temp;
+                }
+            }
+        }
+        for(int i=0;i<3;i++)
+        {
+        printf("%d ",number[i]);
+        }
+}
 void compute(struct area a[],int n,float c[])
 {
     int i;
-    float d,b,p;
     for(i=0;i<n;i++)
     {
-       d = sqrt(pow(a[i].x2-a[i].x1,2) + pow(a[i].y2-a[i].y1,2)*1.0);
-       b = sqrt(pow(a[i].x3-a[i].x2,2) + pow(a[i].y3-a[i].y2,2)*1.0);
-       p = d*b;
-       c[i]=p;
+         int d[3];
+       d[0] =(int) sqrt(pow(a[i].x2-a[i].x1,2) + pow(a[i].y2-a[i].y1,2)*1.0);
+       d[1] =(int) sqrt(pow(a[i].x3-a[i].x2,2) + pow(a[i].y3-a[i].y2,2)*1.0);
+       d[2] = (int)sqrt(pow(a[i].x3-a[i].x1,2) + pow(a[i].y3-a[i].y1,2)*1.0);
+       smallest(d);
+       c[i]=d[0]*d[1];
         printf("\n%f is area",c[i]);
     }
 }
